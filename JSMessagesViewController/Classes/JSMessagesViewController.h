@@ -257,12 +257,17 @@ typedef NS_ENUM(NSUInteger, JSMessagesViewSubtitlePolicy) {
 /**
  *  Returns the table view that displays the messages in `JSMessagesViewController`.
  */
-@property (weak, nonatomic, readonly) UITableView *tableView;
+@property (weak, nonatomic) UITableView *tableView;
 
 /**
  *  Returns the message input view with which new messages are composed.
  */
-@property (weak, nonatomic, readonly) JSMessageInputView *messageInputView;
+@property (weak, nonatomic) JSMessageInputView *messageInputView;
+
+@property (assign, nonatomic) UIEdgeInsets originalTableViewContentInset;
+
+@property (assign, nonatomic) BOOL isUserScrolling;
+
 
 #pragma mark - Messages view controller
 

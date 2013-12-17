@@ -44,7 +44,7 @@ typedef NS_ENUM(NSUInteger, JSMessageInputViewStyle) {
 /**
  *  Returns the textView into which a new message is composed. This property is never `nil`.
  */
-@property (weak, nonatomic, readonly) JSMessageTextView *textView;
+@property (weak, nonatomic) JSMessageTextView *textView;
 
 /**
  *  The send button for the input view. The default value is an initialized `UIButton` whose appearance is styled according to the value of style during initialization. 
