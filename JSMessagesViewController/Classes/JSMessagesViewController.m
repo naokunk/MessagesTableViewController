@@ -238,8 +238,10 @@
     JSContentType contentType = [self.dataSource contentTypeForRowAtIndexPath:indexPath];
     if (contentType == JSContentTypeText) {
         [cell setMessage:[self.dataSource textForRowAtIndexPath:indexPath]];
+        [cell setThumbnailImage:nil];
     }else{
         [cell setThumbnailImage:[self.dataSource imageForRowAtIndexPath:indexPath]];
+        [cell setMessage:nil];
     }
     
     [cell setBackgroundColor:tableView.backgroundColor];

@@ -41,9 +41,15 @@
                      @"It's highly customizable.",
                      @"It even has data detectors. You can call me tonight. My cell number is 452-123-4567. \nMy website is www.hexedbits.com.",
                      @"Group chat is possible. Sound effects and images included. Animations are smooth. Messages can be of arbitrary size!",
+                     @"Group chat is possible. Sound effects and images included. Animations are smooth. Messages can be of arbitrary size!",
+                     @"Group chat is possible. Sound effects and images included. Animations are smooth. Messages can be of arbitrary size!",
+                     @"Group chat is possible. Sound effects and images included. Animations are smooth. Messages can be of arbitrary size!",
                      nil];
     
     self.timestamps = [[NSMutableArray alloc] initWithObjects:
+                       [NSDate distantPast],
+                       [NSDate distantPast],
+                       [NSDate distantPast],
                        [NSDate distantPast],
                        [NSDate distantPast],
                        [NSDate distantPast],
@@ -53,12 +59,18 @@
     self.subtitles = [[NSMutableArray alloc] initWithObjects:
                       kSubtitleJobs,
                       kSubtitleWoz,
+                      kSubtitleWoz,
+                      kSubtitleWoz,
+                      kSubtitleWoz,
                       kSubtitleJobs,
                       kSubtitleCook, nil];
     
     self.avatars = [[NSDictionary alloc] initWithObjectsAndKeys:
                     [JSAvatarImageFactory avatarImageNamed:@"demo-avatar-jobs" croppedToCircle:YES], kSubtitleJobs,
                     [JSAvatarImageFactory avatarImageNamed:@"demo-avatar-woz" croppedToCircle:YES], kSubtitleWoz,
+                    [JSAvatarImageFactory avatarImageNamed:@"demo-avatar-cook" croppedToCircle:YES], kSubtitleCook,
+                    [JSAvatarImageFactory avatarImageNamed:@"demo-avatar-cook" croppedToCircle:YES], kSubtitleCook,
+                    [JSAvatarImageFactory avatarImageNamed:@"demo-avatar-cook" croppedToCircle:YES], kSubtitleCook,
                     [JSAvatarImageFactory avatarImageNamed:@"demo-avatar-cook" croppedToCircle:YES], kSubtitleCook,
                     nil];
     
@@ -214,7 +226,7 @@
 
 - (JSContentType)contentTypeForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == 0) {
+    if (indexPath.row == 0 || indexPath.row == 4) {
         return JSContentTypeImage;
     }else{
         return JSContentTypeText;
@@ -224,7 +236,7 @@
 
 - (UIImage *)imageForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == 0) {
+    if (indexPath.row == 0 || indexPath.row == 4) {
         return [UIImage imageNamed:@"00031364b.jpg"];
     }
     return nil;
