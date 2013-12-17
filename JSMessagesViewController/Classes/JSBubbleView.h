@@ -15,6 +15,8 @@
 #import <UIKit/UIKit.h>
 #import "JSBubbleImageViewFactory.h"
 
+static const CGFloat kJSThumbnailSize = 100.0f;
+
 /**
  *  An instance of JSBubbleView is a means for displaying text in a speech bubble image to be placed in a JSBubbleMessageCell. 
  *  @see JSBubbleMessageCell.
@@ -46,6 +48,9 @@
  *  @bug Setting this property directly, rather than via `UIAppearance` will cause the message bubbles and text to be laid out incorrectly.
  */
 @property (strong, nonatomic) UIFont *font UI_APPEARANCE_SELECTOR;
+
+
+@property (strong, nonatomic) UIImageView *thumbnailImageView;
 
 #pragma mark - Initialization
 
@@ -81,5 +86,8 @@
  *  @return The height required for the frame of the bubble view in order to display the given text.
  */
 + (CGFloat)neededHeightForText:(NSString *)text;
+
+- (void)setThumbnailImage:(UIImage*)image;
+
 
 @end

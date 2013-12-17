@@ -23,7 +23,8 @@
 #define kPaddingTop 4.0f
 #define kPaddingBottom 8.0f
 #define kBubblePaddingRight 35.0f
-
+#define kThumbnailImageMargin 10.0f
+#define kThumbnailImageMarginRight 30.0f
 
 @interface JSBubbleView()
 
@@ -90,6 +91,13 @@
         
         [self addTextViewObservers];
         
+
+        _thumbnailImageView = [[UIImageView alloc] initWithFrame:CGRectZero];
+        _thumbnailImageView.hidden = YES;
+        _thumbnailImageView.contentMode = UIViewContentModeScaleAspectFit;
+        _thumbnailImageView.backgroundColor = [UIColor clearColor];
+        [self addSubview:_thumbnailImageView];
+        
 //        NOTE: TODO: textView frame & text inset
 //        --------------------
 //        future implementation for textView frame
@@ -107,6 +115,7 @@
     [self removeTextViewObservers];
     _bubbleImageView = nil;
     _textView = nil;
+    _thumbnailImageView = nil;
 }
 
 #pragma mark - KVO
@@ -158,6 +167,16 @@
     _textView.font = font;
 }
 
+- (void)setThumbnailImage:(UIImage *)image
+{
+    _thumbnailImageView.image = image;
+    if ( image ) {
+        _thumbnailImageView.hidden = NO;
+    }else{
+        _thumbnailImageView.hidden = YES;
+    }
+}
+
 #pragma mark - UIAppearance Getters
 
 - (UIFont *)font
@@ -177,8 +196,12 @@
 
 - (CGRect)bubbleFrame
 {
-    CGSize bubbleSize = [JSBubbleView neededSizeForText:self.textView.text];
-    
+    CGSize bubbleSize;
+    if (_thumbnailImageView.image ) {
+        bubbleSize = CGSizeMake( kJSThumbnailSize, kJSThumbnailSize);
+    }else{
+        bubbleSize = [JSBubbleView neededSizeForText:self.textView.text];
+    }
     return CGRectMake((self.type == JSBubbleMessageTypeOutgoing ? self.frame.size.width - bubbleSize.width : 0.0f),
                       kMarginTop,
                       bubbleSize.width,
@@ -192,6 +215,14 @@
     [super layoutSubviews];
     
     self.bubbleImageView.frame = [self bubbleFrame];
+    
+    CGRect frame = self.bubbleImageView.frame;
+    CGRect imageRect = CGRectMake( frame.origin.x+kThumbnailImageMargin,
+                                  frame.origin.y+kThumbnailImageMargin,
+                                  frame.size.width - kThumbnailImageMarginRight,
+                                  frame.size.height - kThumbnailImageMargin*2);
+    
+    self.thumbnailImageView.frame =imageRect;
     
     CGFloat textX = self.bubbleImageView.frame.origin.x;
     

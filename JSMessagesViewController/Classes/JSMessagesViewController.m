@@ -235,7 +235,13 @@
 		[cell setSubtitle:[self.dataSource subtitleForRowAtIndexPath:indexPath]];
     }
     
-    [cell setMessage:[self.dataSource textForRowAtIndexPath:indexPath]];
+    JSContentType contentType = [self.dataSource contentTypeForRowAtIndexPath:indexPath];
+    if (contentType == JSContentTypeText) {
+        [cell setMessage:[self.dataSource textForRowAtIndexPath:indexPath]];
+    }else{
+        [cell setThumbnailImage:[self.dataSource imageForRowAtIndexPath:indexPath]];
+    }
+    
     [cell setBackgroundColor:tableView.backgroundColor];
     
     cell.bubbleView.textView.dataDetectorTypes = UIDataDetectorTypeAll;
@@ -260,7 +266,8 @@
     return [JSBubbleMessageCell neededHeightForBubbleMessageCellWithText:text
                                                                timestamp:hasTimestamp
                                                                   avatar:hasAvatar
-                                                                subtitle:hasSubtitle];
+                                                                subtitle:hasSubtitle
+                                                             contentType:[self.dataSource contentTypeForRowAtIndexPath:indexPath]];
 }
 
 #pragma mark - Messages view controller

@@ -28,6 +28,11 @@ typedef NS_ENUM(NSUInteger, JSBubbleMessageType) {
     JSBubbleMessageTypeOutgoing
 };
 
+typedef NS_ENUM(NSUInteger, JSContentType) {
+    JSContentTypeText,
+    JSContentTypeImage
+};
+
 /**
  *  The style of a classic bubble image with an iOS 6 appearance.
  */

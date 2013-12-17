@@ -252,6 +252,13 @@ static const CGFloat kJSSubtitleLabelHeight = 15.0f;
 	self.subtitleLabel.text = subtitle;
 }
 
+
+- (void)setThumbnailImage:(UIImage*)image
+{
+    [self.bubbleView setThumbnailImage:image];
+}
+
+
 #pragma mark - Getters
 
 - (JSBubbleMessageType)messageType
@@ -265,15 +272,21 @@ static const CGFloat kJSSubtitleLabelHeight = 15.0f;
                                           timestamp:(BOOL)hasTimestamp
                                              avatar:(BOOL)hasAvatar
                                            subtitle:(BOOL)hasSubtitle
+                                        contentType:(JSContentType)contentType
 {
     CGFloat timestampHeight = hasTimestamp ? kJSTimeStampLabelHeight : 0.0f;
     CGFloat avatarHeight = hasAvatar ? kJSAvatarImageSize : 0.0f;
 	CGFloat subtitleHeight = hasSubtitle ? kJSSubtitleLabelHeight : 0.0f;
     
     CGFloat subviewHeights = timestampHeight + subtitleHeight + kJSLabelPadding;
-    
-    CGFloat bubbleHeight = [JSBubbleView neededHeightForText:text];
-    
+
+    CGFloat bubbleHeight;
+    if (contentType == JSContentTypeText) {
+        bubbleHeight = [JSBubbleView neededHeightForText:text];
+    }else{
+        bubbleHeight = kJSThumbnailSize;
+    }
+
     return subviewHeights + MAX(avatarHeight, bubbleHeight);
 }
 

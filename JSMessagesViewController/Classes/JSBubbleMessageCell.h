@@ -96,6 +96,9 @@
  */
 - (void)setSubtitle:(NSString *)subtitle;
 
+- (void)setThumbnailImage:(UIImage*)image;
+
+
 #pragma mark - Getters
 
 /**
@@ -121,6 +124,7 @@
 + (CGFloat)neededHeightForBubbleMessageCellWithText:(NSString *)text
                                           timestamp:(BOOL)hasTimestamp
                                              avatar:(BOOL)hasAvatar
-                                           subtitle:(BOOL)hasSubtitle;
+                                           subtitle:(BOOL)hasSubtitle
+                                        contentType:(JSContentType)contentType;
 
 @end

@@ -212,4 +212,23 @@
     return [self.subtitles objectAtIndex:indexPath.row];
 }
 
+- (JSContentType)contentTypeForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row == 0) {
+        return JSContentTypeImage;
+    }else{
+        return JSContentTypeText;
+        
+    }
+}
+
+- (UIImage *)imageForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row == 0) {
+        return [UIImage imageNamed:@"00031364b.jpg"];
+    }
+    return nil;
+}
+
+
 @end
