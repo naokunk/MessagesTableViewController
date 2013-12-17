@@ -265,4 +265,8 @@
     return size.height + kMarginTop + kMarginBottom;
 }
 
++ (CGFloat)neededHeightForImage
+{
+    return kJSThumbnailSize + kMarginTop + kMarginBottom;
+}
 @end

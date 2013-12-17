@@ -284,7 +284,7 @@ static const CGFloat kJSSubtitleLabelHeight = 15.0f;
     if (contentType == JSContentTypeText) {
         bubbleHeight = [JSBubbleView neededHeightForText:text];
     }else{
-        bubbleHeight = kJSThumbnailSize;
+        bubbleHeight = [JSBubbleView neededHeightForImage];
     }
 
     return subviewHeights + MAX(avatarHeight, bubbleHeight);

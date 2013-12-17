@@ -87,6 +87,8 @@ static const CGFloat kJSThumbnailSize = 100.0f;
  */
 + (CGFloat)neededHeightForText:(NSString *)text;
 
++ (CGFloat)neededHeightForImage;
+
 - (void)setThumbnailImage:(UIImage*)image;
 
 

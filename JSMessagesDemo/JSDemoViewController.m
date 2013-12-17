@@ -145,7 +145,7 @@
 
 - (JSMessagesViewSubtitlePolicy)subtitlePolicy
 {
-    return JSMessagesViewSubtitlePolicyAll;
+    return JSMessagesViewSubtitlePolicyIncomingOnly;
 }
 
 - (JSMessageInputViewStyle)inputViewStyle
