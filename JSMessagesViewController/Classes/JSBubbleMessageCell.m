@@ -94,15 +94,12 @@ static const CGFloat kJSSubtitleLabelHeight = 15.0f;
         avatarX = (self.contentView.frame.size.width - kJSAvatarImageSize);
     }
     
-    CGFloat avatarY = self.contentView.frame.size.height - kJSAvatarImageSize;
-    if(_subtitleLabel) {
-        avatarY -= kJSSubtitleLabelHeight;
+    CGFloat avatarY = 0.0;
+    if (_timestampLabel) {
+        avatarY = 20.0;
     }
     
     imageView.frame = CGRectMake(avatarX, avatarY, kJSAvatarImageSize, kJSAvatarImageSize);
-    imageView.autoresizingMask = (UIViewAutoresizingFlexibleTopMargin
-                                         | UIViewAutoresizingFlexibleLeftMargin
-                                         | UIViewAutoresizingFlexibleRightMargin);
     
     [self.contentView addSubview:imageView];
     _avatarImageView = imageView;
