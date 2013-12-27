@@ -66,6 +66,8 @@ static const CGFloat kJSSubtitleLabelHeight = 15.0f;
                                                                                              action:@selector(handleLongPressGesture:)];
     [recognizer setMinimumPressDuration:0.4f];
     [self addGestureRecognizer:recognizer];
+    
+    
 }
 
 - (void)configureTimestampLabel
@@ -158,12 +160,19 @@ static const CGFloat kJSSubtitleLabelHeight = 15.0f;
                                                    bubbleImageView:bubbleImageView];
     
     bubbleView.autoresizingMask = (UIViewAutoresizingFlexibleWidth
-                                    | UIViewAutoresizingFlexibleHeight
-                                    | UIViewAutoresizingFlexibleBottomMargin);
+                                   | UIViewAutoresizingFlexibleHeight
+                                   | UIViewAutoresizingFlexibleBottomMargin);
     
     [self.contentView addSubview:bubbleView];
     [self.contentView sendSubviewToBack:bubbleView];
     _bubbleView = bubbleView;
+    
+    _bubbleView.textView.userInteractionEnabled = NO;
+    
+    UITapGestureRecognizer *tapGeusture = [[UITapGestureRecognizer alloc] init];
+    [tapGeusture addTarget:self action:@selector(bubbleViewTapped:)];
+    [self.bubbleView.bubbleImageView addGestureRecognizer:tapGeusture];
+
 }
 
 #pragma mark - Initialization
@@ -276,14 +285,14 @@ static const CGFloat kJSSubtitleLabelHeight = 15.0f;
 	CGFloat subtitleHeight = hasSubtitle ? kJSSubtitleLabelHeight : 0.0f;
     
     CGFloat subviewHeights = timestampHeight + subtitleHeight + kJSLabelPadding;
-
+    
     CGFloat bubbleHeight;
     if (contentType == JSContentTypeText) {
         bubbleHeight = [JSBubbleView neededHeightForText:text];
     }else{
         bubbleHeight = [JSBubbleView neededHeightForImage];
     }
-
+    
     return subviewHeights + MAX(avatarHeight, bubbleHeight);
 }
 
@@ -345,6 +354,15 @@ static const CGFloat kJSSubtitleLabelHeight = 15.0f;
                                                object:nil];
     [menu setMenuVisible:YES animated:YES];
 }
+
+- (void)bubbleViewTapped:(UITapGestureRecognizer*)recognizer
+{
+    NSLog(@"%s %@", __PRETTY_FUNCTION__,self.superview.class);
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:kJSBubbleViewTapped
+                                                        object:self];
+}
+
 
 #pragma mark - Notifications
 

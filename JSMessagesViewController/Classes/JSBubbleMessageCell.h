@@ -15,6 +15,8 @@
 #import <UIKit/UIKit.h>
 #import "JSBubbleView.h"
 
+static NSString *const kJSBubbleViewTapped = @"kJSBubbleViewTapped";
+
 /**
  *  The `JSBubbleMessageCell` class defines the attributes and behavior of the cells that appear in `JSMessagesViewController`. This class includes properties and methods for setting and managing cell content.
  */
