@@ -86,7 +86,7 @@
         _textView = textView;
         
         if([_textView respondsToSelector:@selector(textContainerInset)]) {
-            _textView.textContainerInset = UIEdgeInsetsMake(6.0f, 4.0f, 2.0f, 4.0f);
+            _textView.textContainerInset = UIEdgeInsetsMake(10.0f, 4.0f, 2.0f, 4.0f);
         }
         
         [self addTextViewObservers];
